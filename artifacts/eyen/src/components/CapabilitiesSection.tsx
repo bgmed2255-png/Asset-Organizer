@@ -10,42 +10,42 @@ const capabilities = [
     title: "Subliminal Narrative Cues",
     description:
       "We encode brand stories into micro-interactions, color theory, and typographic rhythm that the conscious mind never notices — but the subconscious never forgets.",
-    visual: { bg: "linear-gradient(135deg, #1a1008, #2d1a08)", icon: "eye" },
+    visual: { bg: "linear-gradient(135deg, #1a1008, #2d1a08)", icon: "eye", image: "/images/cap-subliminal.png" },
   },
   {
     number: "02",
     title: "Archetypal Signature Design",
     description:
       "Jungian archetypes mapped to visual identity systems. Every brand gets a soul, not just a style guide.",
-    visual: { bg: "linear-gradient(135deg, #0d1117, #111827)", icon: "diamond" },
+    visual: { bg: "linear-gradient(135deg, #0d1117, #111827)", icon: "diamond", image: "/images/cap-archetypal.png" },
   },
   {
     number: "03",
     title: "Implicit Identity Association",
     description:
       "We build brand assets that trigger identity-level recognition. Customers don't choose your brand — they discover it was always part of them.",
-    visual: { bg: "linear-gradient(135deg, #120808, #1e1010)", icon: "circle" },
+    visual: { bg: "linear-gradient(135deg, #120808, #1e1010)", icon: "circle", image: "/images/cap-identity.png" },
   },
   {
     number: "04",
     title: "NLP Brand Language Systems",
     description:
       "Neurolinguistic programming principles applied to copy, positioning, and customer journey mapping. Language that converts at the identity level.",
-    visual: { bg: "linear-gradient(135deg, #080d12, #0f1a24)", icon: "lines" },
+    visual: { bg: "linear-gradient(135deg, #080d12, #0f1a24)", icon: "lines", image: "/images/philosophy-3.png" },
   },
   {
     number: "05",
     title: "Mentalism & Pattern Interrupt",
     description:
       "Break expectations at precisely the right moment. We engineer surprise, delight, and cognitive dissonance that brands the memory permanently.",
-    visual: { bg: "linear-gradient(135deg, #0e0e0e, #1a1a1a)", icon: "star" },
+    visual: { bg: "linear-gradient(135deg, #0e0e0e, #1a1a1a)", icon: "star", image: "/images/philosophy-2.png" },
   },
   {
     number: "06",
     title: "Tribe Formation Strategy",
     description:
       "Social identity theory applied to brand community building. We don't find your audience — we create a movement that finds itself.",
-    visual: { bg: "linear-gradient(135deg, #100a18, #1c1428)", icon: "network" },
+    visual: { bg: "linear-gradient(135deg, #100a18, #1c1428)", icon: "network", image: "/images/philosophy-1.png" },
   },
 ];
 
@@ -290,21 +290,36 @@ export default function CapabilitiesSection() {
           ref={imageRef}
           style={{
             position: "fixed",
-            width: 220,
-            height: 160,
+            width: 260,
+            height: 180,
             pointerEvents: "none",
             zIndex: 9000,
-            transform: "translate(-50%, -110%)",
+            transform: "translate(-50%, -115%)",
             overflow: "hidden",
             background: currentCapability.visual.bg,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             opacity: hoveredIndex !== null ? 1 : 0,
-            transition: "opacity 0.3s ease",
+            transition: "opacity 0.35s ease",
           }}
         >
-          <IconSVG type={currentCapability.visual.icon} />
+          <img
+            src={currentCapability.visual.image}
+            alt={currentCapability.title}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              mixBlendMode: "luminosity",
+              opacity: 0.8,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to top, rgba(16,16,16,0.5) 0%, transparent 60%)",
+            }}
+          />
         </div>
       )}
     </section>

@@ -14,6 +14,7 @@ const projects = [
       "Archetypal depth meets minimalist form. A music label reborn as a cultural institution.",
     bg: "linear-gradient(135deg, #1a1008 0%, #2d1f0e 40%, #101010 100%)",
     accentColor: "#C4A882",
+    image: "/images/project-1.png",
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const projects = [
       "Where brutalist architecture meets human vulnerability. A luxury hotel brand that breathes.",
     bg: "linear-gradient(135deg, #0d1117 0%, #111827 50%, #101010 100%)",
     accentColor: "#7B9BA8",
+    image: "/images/project-2.png",
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const projects = [
       "NLP-infused brand language for a wellness brand that converts the skeptical.",
     bg: "linear-gradient(135deg, #120d08 0%, #1c1408 50%, #101010 100%)",
     accentColor: "#B8A06A",
+    image: "/images/project-3.png",
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ const projects = [
       "What you don't say is as powerful as what you do. A fashion manifesto in silence.",
     bg: "linear-gradient(135deg, #0e0e0e 0%, #181818 50%, #101010 100%)",
     accentColor: "#E5D5C0",
+    image: "/images/project-4.png",
   },
 ];
 
@@ -180,12 +184,26 @@ export default function HorizontalScroll() {
                 padding: "40px 36px",
               }}
             >
+              <img
+                src={project.image}
+                alt={project.title}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  opacity: 0.55,
+                  mixBlendMode: "luminosity",
+                }}
+              />
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background:
-                    "radial-gradient(ellipse at 30% 30%, rgba(234,229,217,0.04) 0%, transparent 60%)",
+                    "linear-gradient(to top, rgba(16,16,16,0.92) 0%, rgba(16,16,16,0.4) 50%, rgba(16,16,16,0.15) 100%)",
                 }}
               />
 
