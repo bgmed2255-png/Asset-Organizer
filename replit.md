@@ -4,6 +4,32 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+### `artifacts/eyen` — EYEN Branding Agency Portfolio
+
+Award-winning-style branding agency portfolio website. Pure frontend, no backend.
+
+**Tech Stack**: React + Vite, GSAP (ScrollTrigger), Lenis smooth scroll, Tailwind CSS, Lucide React
+**Fonts**: Cormorant Garamond (serif headers), Inter (UI/body)
+**Color Palette**: #101010 (deep black bg), #EAE5D9 (raw beige text)
+
+**Sections**:
+1. Navigation — fixed, minimal, 10px tracked-out uppercase
+2. Hero — full-viewport EYEN wordmark with staggered char reveal animation
+3. Horizontal Scroll (Works) — GSAP ScrollTrigger-pinned 4-card project showcase
+4. Philosophy — split-screen sticky left / scrolling right with philosophy panels
+5. Capabilities — brutalist list rows with cursor-follow floating image effect
+6. Footer / Contact — animated contact section
+
+**Key components**:
+- `CustomCursor.tsx` — beige dot with GSAP lerp following, expands on `data-cursor` elements
+- `SmoothScroller.tsx` — Lenis smooth scroller wired to GSAP ticker
+- `HeroSection.tsx` — staggered character reveal via GSAP clip-path animation
+- `HorizontalScroll.tsx` — GSAP ScrollTrigger horizontal pin + translateX
+- `PhilosophySection.tsx` — sticky left column, scrolling right panels
+- `CapabilitiesSection.tsx` — brutalist rows, cursor-follow floating visual
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

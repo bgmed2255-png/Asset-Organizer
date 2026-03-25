@@ -1,0 +1,110 @@
+Here is a highly detailed, comprehensive prompt engineered specifically for Replit’s AI (or any advanced AI coding agent like Cursor or Claude).
+
+It gives the AI the exact tech stack, layout mechanics, micro-interactions, and brand copywriting needed to recreate the award-winning e-t.studio physics, tailored perfectly to the EYEN brand identity.
+
+Copy and Paste this exact prompt into Replit:
+
+System Role & Objective:
+Act as an award-winning creative frontend developer and web designer. Your objective is to build a high-end, brutalist, editorial-style portfolio website for a branding agency named "EYEN". The website must emulate the smooth, minimalist, and interactive physics of Awwwards-winning sites like "e-t.studio".
+
+Tech Stack:
+
+Framework: Next.js (App Router) or React (Vite).
+
+Styling: Tailwind CSS.
+
+Animations: GSAP (GreenSock) heavily utilizing ScrollTrigger and Observer.
+
+Smooth Scrolling: Lenis (Studio Freight) for fluid, physics-based scrolling.
+
+Icons: Lucide React (use sparingly, mostly for UI arrows).
+
+Global Styling & Brand Identity (EYEN):
+
+Background Color: Deep, rich black (#101010).
+
+Text Color: Raw-paper beige/off-white (#EAE5D9).
+
+Primary Font (Headers/Wordmarks): A high-contrast, elegant Serif font (e.g., Playfair Display, Cormorant Garamond, or Cinzel).
+
+Secondary Font (Body/UI): A tiny, clean geometric Sans-Serif (e.g., Inter, Helvetica Neue, or Space Grotesk), used at very small sizes (10px - 12px) with wide tracking/letter-spacing for an editorial feel.
+
+Custom Cursor: Hide the default browser cursor. Create a custom cursor (a small beige dot). When hovering over clickable elements, the dot should expand, and inside it, display tiny black text (e.g., "VIEW", "SCROLL", or an arrow icon).
+
+Architecture & Sections to Build:
+
+1. The Navigation (Fixed & Minimal):
+
+Sticky header at the top.
+
+Left: "FILMMAKING" (dropdown), "creative act" (dropdown).
+
+Center: "STUDIO", "WORKS".
+
+Right: "CONTACT".
+
+All nav text must be tiny sans-serif uppercase, 11px, tracking-widest.
+
+2. The Hero Section (The Hook):
+
+Full viewport height (100vh).
+
+Display a massive, screen-filling serif wordmark: "EYEN".
+
+Below it, in the bottom-left corner, place a small text block (sans-serif, 14px max, 400 width): "We don't just make brands. We engineer the conditions for a customer to emerge, to participate, to become an evangelist. We blend the intuitive artistry of Rick Rubin with the paradigm-shifting vision of Steve Jobs."
+
+Bottom-right corner: A minimalist eye icon (SVG) rotating slowly.
+
+3. The Horizontal Scroll Section (Projects / "Narrative Resonance"):
+
+Create a section that takes up 300vh to allow for scroll hijacking.
+
+Use GSAP ScrollTrigger to pin this section when the user reaches it, and translate a flex-container horizontally (translateX) as the user scrolls down.
+
+Inside the container, place 4 large project cards.
+
+Card Design: Large images with dark, moody photography.
+
+Hover Effect: When the custom cursor hovers over an image, the image should scale up slightly within its container (overflow hidden), and the cursor should display "VIEW STORY".
+
+4. The Split-Screen Sticky Scroll (The Philosophy):
+
+Layout: Two columns (50% / 50%).
+
+Left Column (Sticky): Pins to the screen as the user scrolls. Contains massive Serif typography that changes based on the scroll position.
+
+Text 1: "The Human as Storyteller."
+
+Text 2: "The Yin and Yang of Branding."
+
+Text 3: "Engineering Tribes."
+
+Right Column (Scrolling): Flows normally. Contains tall, vertical images (abstract art, cinematic eye close-ups, moody textures) interspersed with small paragraphs of text explaining EYEN's use of NLP, mentalism, and psychology in branding.
+
+5. The Hover-Reveal List Section (Capabilities):
+
+A full-width, brutalist table/list .
+
+Each row represents a capability (e.g., "Subliminal Narrative Cues", "Archetypal Signature Design", "Implicit Identity Association").
+
+Design: Huge text, separated by 1px beige borders (border-b).
+
+Interaction: When hovering over a row, a hidden image related to that capability should smoothly follow the user's cursor (using GSAP pointer tracking), floating above the text with a high z-index.
+
+Animation & Interaction Rules (CRITICAL):
+
+No sudden snaps. Every movement, hover state, and page transition must use an easing function (e.g., power3.out in GSAP).
+
+Parallax: Add subtle vertical parallax to all large images. They should move slightly slower than the scroll speed.
+
+Text Reveal: When the page loads, the massive "EYEN" header should reveal itself using a staggered character/line animation from the bottom up (clip-path reveal).
+
+To start: Please initialize the Next.js/Tailwind project, set up the Lenis smooth scroller globally, create the Custom Cursor component, and build the Hero Section first. Ask for my confirmation before moving to the horizontal scroll section.
+
+Why this prompt works perfectly for Replit/AI:
+
+It defines the "Physics": AI is good at writing CSS, but it struggles with complex scroll logic unless you specifically name the libraries (GSAP ScrollTrigger, Lenis). Mentioning these forces the AI to build the architecture correctly from step 1.
+
+It sets boundaries: By defining the exact fonts, sizes (11px tracked-out sans-serif), and colors (Deep Black/Raw Beige), the AI won't default to generic bootstrap-looking templates.
+
+It maps to your strategy: I embedded your exact brand positioning (The Rick Rubin/Steve Jobs philosophy, NLP, Mentalism, Tribes) directly into the layout instructions, so the AI will populate the site with your actual brand voice, not lorem ipsum.

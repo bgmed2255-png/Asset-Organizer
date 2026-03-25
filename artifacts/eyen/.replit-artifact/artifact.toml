@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "EYEN — Branding Agency"
+version = "1.0.0"
+id = "artifacts/eyen"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25999
+
+[services.development]
+run = "pnpm --filter @workspace/eyen run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/eyen", "run", "build" ]
+publicDir = "artifacts/eyen/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25999"
+BASE_PATH = "/"
