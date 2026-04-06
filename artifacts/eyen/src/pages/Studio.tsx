@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+import { useLocation } from "wouter";
 import gsap from "gsap";
+import { projects } from "@/data/projects";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import EyeLogo from "@/components/EyeLogo";
 
@@ -43,8 +45,8 @@ const team = [
 ];
 
 export default function Studio() {
+  const [, navigate] = useLocation();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const headingsRef = useRef<HTMLDivElement[]>([]);
   const panelsRef = useRef<HTMLDivElement[]>([]);
 
@@ -56,17 +58,17 @@ export default function Studio() {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<Element>(".studio-reveal").forEach((el) => {
         gsap.fromTo(el,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%" } }
+          { y: 36, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.85, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 87%" } }
         );
       });
 
       philosophyItems.forEach((_, i) => {
         ScrollTrigger.create({
           trigger: panelsRef.current[i],
-          start: "top center",
-          end: "bottom center",
+          start: "top 55%",
+          end: "bottom 45%",
           onEnter: () => showHeading(i),
           onEnterBack: () => showHeading(i),
         });
@@ -76,15 +78,15 @@ export default function Studio() {
         headingsRef.current.forEach((h, i) => {
           gsap.to(h, {
             opacity: i === activeIndex ? 1 : 0,
-            y: i === activeIndex ? 0 : 20,
-            duration: 0.6,
+            y: i === activeIndex ? 0 : 16,
+            duration: 0.55,
             ease: "power3.out",
           });
         });
       }
 
       gsap.set(headingsRef.current[0], { opacity: 1, y: 0 });
-      headingsRef.current.slice(1).forEach((h) => gsap.set(h, { opacity: 0, y: 20 }));
+      headingsRef.current.slice(1).forEach((h) => gsap.set(h, { opacity: 0, y: 16 }));
     }, section);
 
     return () => ctx.revert();
@@ -96,7 +98,7 @@ export default function Studio() {
       {/* Hero banner */}
       <div
         style={{
-          minHeight: "70vh",
+          minHeight: "72vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
@@ -106,39 +108,47 @@ export default function Studio() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", top: 80, right: 48, opacity: 0.06, pointerEvents: "none" }}>
-          <EyeLogo size={160} color="#EAE5D9" />
+        <div style={{ position: "absolute", top: "50%", right: 60, transform: "translateY(-55%)", opacity: 0.055, pointerEvents: "none" }}>
+          <EyeLogo size={180} color="#EAE5D9" />
         </div>
-        <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 32 }}>
+        <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.3)", textTransform: "uppercase", marginBottom: 28 }}>
           The Studio
         </p>
-        <h1 className="studio-reveal" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(40px, 6vw, 88px)", fontWeight: 400, color: "#EAE5D9", lineHeight: 1.05, maxWidth: 720, letterSpacing: "0.01em" }}>
+        <h1 className="studio-reveal" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(38px, 6vw, 84px)", fontWeight: 400, color: "#EAE5D9", lineHeight: 1.04, maxWidth: 700, letterSpacing: "0.005em" }}>
           We don't make brands.<br />We engineer belief.
         </h1>
-        <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 12, lineHeight: 1.9, color: "rgba(234,229,217,0.5)", maxWidth: 480, marginTop: 32, letterSpacing: "0.03em" }}>
-          EYEN is a branding agency built on the intersection of neurolinguistic programming, Jungian psychology, and uncompromising visual craft. We work with a curated selection of clients each year — not because exclusivity is a brand strategy, but because depth requires time.
-        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 48, maxWidth: 900 }}>
+          <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 12, lineHeight: 1.9, color: "rgba(234,229,217,0.45)", letterSpacing: "0.025em" }}>
+            EYEN is a branding agency built on the intersection of neurolinguistic programming, Jungian psychology, and uncompromising visual craft.
+          </p>
+          <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 12, lineHeight: 1.9, color: "rgba(234,229,217,0.45)", letterSpacing: "0.025em" }}>
+            We work with a curated selection of clients each year — not because exclusivity is a strategy, but because depth requires time. A brand built at speed is a brand built to fail.
+          </p>
+        </div>
       </div>
 
       {/* Team */}
-      <div style={{ padding: "100px 48px", borderBottom: "1px solid rgba(234,229,217,0.07)" }}>
-        <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 48 }}>
+      <div style={{ padding: "80px 48px 0", borderBottom: "1px solid rgba(234,229,217,0.07)" }}>
+        <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.3)", textTransform: "uppercase", marginBottom: 48 }}>
           The People
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(234,229,217,0.07)" }}>
-          {team.map((member) => (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(234,229,217,0.06)", marginBottom: 0 }}>
+          {team.map((member, i) => (
             <div
               key={member.name}
               className="studio-reveal"
-              style={{ padding: "40px 32px", backgroundColor: "#101010" }}
+              style={{ padding: "36px 32px 40px", backgroundColor: "#101010", borderBottom: "1px solid rgba(234,229,217,0.06)" }}
             >
-              <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, fontWeight: 400, color: "#EAE5D9", marginBottom: 8 }}>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.18em", color: "rgba(234,229,217,0.2)", marginBottom: 20 }}>
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, fontWeight: 400, color: "#EAE5D9", marginBottom: 6 }}>
                 {member.name}
               </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 10, letterSpacing: "0.15em", color: "rgba(234,229,217,0.4)", textTransform: "uppercase", marginBottom: 20 }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.15em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 24 }}>
                 {member.role}
               </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.15em", color: "rgba(234,229,217,0.2)" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.15em", color: "rgba(234,229,217,0.18)", textTransform: "uppercase" }}>
                 Since {member.since}
               </p>
             </div>
@@ -146,26 +156,36 @@ export default function Studio() {
         </div>
       </div>
 
-      {/* Philosophy — split screen */}
-      <div style={{ display: "flex", alignItems: "flex-start" }}>
+      {/* Philosophy — sticky split */}
+      <div style={{ display: "flex" }}>
+        {/* Sticky left */}
         <div
-          ref={stickyRef}
-          style={{ width: "50%", position: "sticky", top: 64, height: "calc(100vh - 64px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 60px 80px 48px", borderRight: "1px solid rgba(234,229,217,0.06)" }}
+          style={{
+            width: "45%",
+            position: "sticky",
+            top: 64,
+            height: "calc(100vh - 64px)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "60px 60px 60px 48px",
+            borderRight: "1px solid rgba(234,229,217,0.06)",
+          }}
         >
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 40 }}>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.28)", textTransform: "uppercase", marginBottom: 40 }}>
             The Philosophy
           </p>
-          <div style={{ position: "relative", minHeight: 280 }}>
+          <div style={{ position: "relative", minHeight: 300 }}>
             {philosophyItems.map((item, i) => (
               <div
                 key={i}
                 ref={(el) => { if (el) headingsRef.current[i] = el; }}
                 style={{ position: i === 0 ? "relative" : "absolute", top: 0, left: 0, right: 0 }}
               >
-                <h2 style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(26px, 3vw, 46px)", fontWeight: 400, color: "#EAE5D9", lineHeight: 1.15, letterSpacing: "0.01em" }}>
+                <h2 style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(24px, 2.8vw, 44px)", fontWeight: 400, color: "#EAE5D9", lineHeight: 1.15, letterSpacing: "0.005em" }}>
                   {item.heading}
                 </h2>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.2em", color: "rgba(234,229,217,0.3)", textTransform: "uppercase", marginTop: 24 }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.22em", color: "rgba(234,229,217,0.25)", textTransform: "uppercase", marginTop: 28 }}>
                   {item.label}
                 </p>
               </div>
@@ -173,21 +193,33 @@ export default function Studio() {
           </div>
         </div>
 
-        <div style={{ width: "50%", paddingLeft: 60, paddingRight: 48 }}>
+        {/* Scrolling right panels */}
+        <div style={{ width: "55%", paddingLeft: 60, paddingRight: 48 }}>
           {philosophyItems.map((item, i) => (
             <div
               key={i}
               ref={(el) => { if (el) panelsRef.current[i] = el; }}
-              style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 0", borderBottom: i < philosophyItems.length - 1 ? "1px solid rgba(234,229,217,0.06)" : "none" }}
+              style={{
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                padding: "80px 0",
+                borderBottom: i < philosophyItems.length - 1 ? "1px solid rgba(234,229,217,0.06)" : "none",
+              }}
             >
-              <div style={{ width: 40, height: 1, backgroundColor: "rgba(234,229,217,0.2)", marginBottom: 40 }} />
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, lineHeight: 1.9, color: "rgba(234,229,217,0.65)", letterSpacing: "0.03em", maxWidth: 440 }}>
+              <div style={{ width: 32, height: 1, backgroundColor: "rgba(234,229,217,0.15)", marginBottom: 36 }} />
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, lineHeight: 1.92, color: "rgba(234,229,217,0.6)", letterSpacing: "0.03em", maxWidth: 420 }}>
                 {item.body}
               </p>
-              <div style={{ marginTop: 60, width: "100%", aspectRatio: "16/9", position: "relative", overflow: "hidden", background: "#0a0a0a" }}>
-                <img src={item.image} alt={item.heading} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "luminosity", opacity: 0.75 }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.05) 100%)" }} />
-                <div style={{ position: "absolute", bottom: 20, left: 24, fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.2em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase" }}>
+              <div style={{ marginTop: 56, width: "100%", aspectRatio: "16/9", position: "relative", overflow: "hidden", background: "#0a0a0a" }}>
+                <img
+                  src={item.image}
+                  alt={item.heading}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "luminosity", opacity: 0.7 }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.05) 100%)" }} />
+                <div style={{ position: "absolute", bottom: 18, left: 20, fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.2em", color: "rgba(234,229,217,0.3)", textTransform: "uppercase" }}>
                   {item.label}
                 </div>
               </div>
@@ -197,12 +229,12 @@ export default function Studio() {
       </div>
 
       {/* Capabilities */}
-      <div style={{ padding: "100px 0 80px", borderTop: "1px solid rgba(234,229,217,0.07)" }}>
-        <div style={{ padding: "0 48px", marginBottom: 60 }}>
-          <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 16 }}>
+      <div style={{ padding: "80px 0 0", borderTop: "1px solid rgba(234,229,217,0.07)" }}>
+        <div style={{ padding: "0 48px 48px" }}>
+          <p className="studio-reveal" style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.25em", color: "rgba(234,229,217,0.28)", textTransform: "uppercase", marginBottom: 14 }}>
             Capabilities
           </p>
-          <h2 className="studio-reveal" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(28px, 4vw, 56px)", fontWeight: 400, color: "#EAE5D9" }}>
+          <h2 className="studio-reveal" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(26px, 4vw, 54px)", fontWeight: 400, color: "#EAE5D9" }}>
             The Arsenal
           </h2>
         </div>
@@ -210,12 +242,12 @@ export default function Studio() {
           <div
             key={i}
             className="studio-reveal"
-            style={{ padding: "24px 48px", borderTop: "1px solid rgba(234,229,217,0.07)", display: "flex", alignItems: "baseline", gap: 32 }}
+            style={{ padding: "22px 48px", borderTop: "1px solid rgba(234,229,217,0.07)", display: "flex", alignItems: "baseline", gap: 28 }}
           >
-            <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 12, color: "rgba(234,229,217,0.2)", fontWeight: 300, letterSpacing: "0.1em", minWidth: 28 }}>
+            <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 12, color: "rgba(234,229,217,0.18)", letterSpacing: "0.08em", minWidth: 26 }}>
               {cap.num}
             </span>
-            <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.5vw, 38px)", fontWeight: 400, color: "#EAE5D9", letterSpacing: "0.02em" }}>
+            <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(18px, 2.4vw, 36px)", fontWeight: 400, color: "#EAE5D9", letterSpacing: "0.015em" }}>
               {cap.title}
             </span>
           </div>
@@ -223,6 +255,36 @@ export default function Studio() {
         <div style={{ borderTop: "1px solid rgba(234,229,217,0.07)" }} />
       </div>
 
+      {/* Bridge → Works */}
+      <div
+        data-cursor="EXPLORE"
+        onClick={() => navigate("/works")}
+        style={{
+          margin: "0 48px",
+          padding: "48px 0",
+          borderTop: "1px solid rgba(234,229,217,0.07)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          transition: "opacity 0.4s ease",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+      >
+        <div>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.22em", color: "rgba(234,229,217,0.28)", textTransform: "uppercase", marginBottom: 10 }}>
+            The proof
+          </p>
+          <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.5vw, 36px)", fontWeight: 400, color: "#EAE5D9" }}>
+            See the work →
+          </p>
+        </div>
+        <span style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.2em", color: "rgba(234,229,217,0.2)", textTransform: "uppercase" }}>
+          {projects.length} Projects
+        </span>
+      </div>
+
     </div>
   );
 }
+

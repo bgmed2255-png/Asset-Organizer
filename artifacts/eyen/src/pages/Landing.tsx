@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import gsap from "gsap";
 import EyeLogo from "@/components/EyeLogo";
@@ -6,9 +6,24 @@ import EyeLogo from "@/components/EyeLogo";
 const chars = "EYEN".split("");
 
 const navItems = [
-  { label: "Studio", href: "/studio", desc: "Who we are" },
-  { label: "Works", href: "/works", desc: "What we've made" },
-  { label: "Contact", href: "/contact", desc: "Start a project" },
+  {
+    label: "Studio",
+    href: "/studio",
+    desc: "Philosophy & process",
+    num: "01",
+  },
+  {
+    label: "Works",
+    href: "/works",
+    desc: "Selected projects",
+    num: "02",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    desc: "Begin a project",
+    num: "03",
+  },
 ];
 
 export default function Landing() {
@@ -17,58 +32,61 @@ export default function Landing() {
   const subtitleRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const eyeRef = useRef<HTMLDivElement>(null);
-  const grainRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.1 });
+    const tl = gsap.timeline({ delay: 0.15 });
 
     charRefs.current.forEach((el, i) => {
       if (el) {
         tl.fromTo(
           el,
-          { y: 140, opacity: 0, clipPath: "inset(100% 0 0 0)" },
-          { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.1, ease: "power3.out" },
-          i * 0.07
+          { y: 160, opacity: 0, clipPath: "inset(100% 0 0 0)" },
+          { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.0, ease: "power3.out" },
+          i * 0.06
         );
       }
     });
 
-    tl.fromTo(
-      subtitleRef.current,
-      { y: 24, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
-      0.5
+    tl.fromTo(eyeRef.current,
+      { opacity: 0, scale: 0.85 },
+      { opacity: 1, scale: 1, duration: 1.4, ease: "power3.out" },
+      0.2
     );
 
-    tl.fromTo(
-      navRef.current,
+    tl.fromTo(subtitleRef.current,
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
-      0.7
+      0.55
     );
 
-    tl.fromTo(
-      eyeRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: "power2.out" },
-      0.4
+    tl.fromTo(lineRef.current,
+      { scaleX: 0, transformOrigin: "left" },
+      { scaleX: 1, duration: 0.8, ease: "power3.inOut" },
+      0.8
     );
 
-    // Subtle breathing animation on the eye
+    tl.fromTo(navRef.current,
+      { y: 18, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      0.88
+    );
+
     gsap.to(eyeRef.current, {
-      scale: 1.04,
-      duration: 3.5,
+      y: -6,
+      duration: 4,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
-      delay: 1.5,
+      delay: 1.8,
     });
   }, []);
 
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         backgroundColor: "#101010",
         display: "flex",
         flexDirection: "column",
@@ -76,70 +94,66 @@ export default function Landing() {
         overflow: "hidden",
       }}
     >
-      {/* Film grain overlay */}
+      {/* Film grain */}
       <div
-        ref={grainRef}
         style={{
           position: "fixed",
           inset: 0,
           zIndex: 1,
           pointerEvents: "none",
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E")`,
-          backgroundSize: "128px 128px",
-          opacity: 0.6,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E")`,
+          backgroundSize: "200px 200px",
+          opacity: 0.5,
           mixBlendMode: "overlay",
         }}
       />
 
-      {/* Ambient glow */}
+      {/* Radial ambient */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(234,229,217,0.04) 0%, transparent 70%)",
+          backgroundImage: "radial-gradient(ellipse 55% 45% at 50% 42%, rgba(234,229,217,0.05) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
 
-      {/* Eye logo — large centered watermark behind text */}
-      <div
-        ref={eyeRef}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          opacity: 0,
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      >
-        <EyeLogo size={120} color="#EAE5D9" opacity={0.04} />
-      </div>
-
-      {/* Main content */}
+      {/* Hero — center */}
       <div
         style={{
           flex: 1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-start",
           position: "relative",
           zIndex: 2,
-          padding: "80px 48px 0",
-          textAlign: "center",
+          padding: "100px 48px 0",
         }}
       >
-        {/* Massive wordmark */}
+        {/* Eye mark — positioned top-right of hero area */}
+        <div
+          ref={eyeRef}
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: 48,
+            transform: "translateY(-50%)",
+            opacity: 0,
+            pointerEvents: "none",
+          }}
+        >
+          <EyeLogo size={80} color="#EAE5D9" opacity={0.06} />
+        </div>
+
+        {/* Wordmark */}
         <div
           style={{
-            fontSize: "clamp(96px, 21vw, 260px)",
+            fontSize: "clamp(88px, 19vw, 240px)",
             fontFamily: "Cormorant Garamond, Georgia, serif",
             fontWeight: 400,
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.03em",
             color: "#EAE5D9",
             lineHeight: 0.88,
             display: "flex",
@@ -157,29 +171,29 @@ export default function Landing() {
           ))}
         </div>
 
-        {/* Tagline */}
+        {/* Position statement */}
         <div
           ref={subtitleRef}
-          style={{ marginTop: 40, maxWidth: 420, opacity: 0 }}
+          style={{ marginTop: 36, maxWidth: 500, opacity: 0 }}
         >
           <p
             style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 11,
+              fontFamily: "Cormorant Garamond, serif",
+              fontSize: "clamp(16px, 1.4vw, 22px)",
+              fontStyle: "italic",
               fontWeight: 300,
-              lineHeight: 1.9,
+              lineHeight: 1.55,
               color: "rgba(234,229,217,0.55)",
-              letterSpacing: "0.05em",
+              letterSpacing: "0.01em",
             }}
           >
-            We engineer the conditions for a customer to emerge, to participate,
-            to become an evangelist.
+            "Your brand isn't just a logo — it's a belief system.<br />
+            We build brands that convert the skeptical into the devoted."
           </p>
           <div
             style={{
               marginTop: 20,
               display: "flex",
-              justifyContent: "center",
               alignItems: "center",
               gap: 12,
             }}
@@ -190,74 +204,97 @@ export default function Landing() {
                 fontFamily: "Inter, sans-serif",
                 fontSize: 8,
                 letterSpacing: "0.28em",
-                color: "rgba(234,229,217,0.25)",
+                color: "rgba(234,229,217,0.2)",
                 textTransform: "uppercase",
               }}
             >
-              EST. 2023 · London
+              EST. 2023 · London · New York · Dubai
             </span>
-            <div style={{ width: 20, height: 1, backgroundColor: "rgba(234,229,217,0.2)" }} />
           </div>
         </div>
       </div>
 
-      {/* Section navigation — bottom anchored */}
+      {/* Divider line */}
+      <div
+        ref={lineRef}
+        style={{
+          position: "relative",
+          zIndex: 2,
+          height: 1,
+          margin: "60px 48px 0",
+          backgroundColor: "rgba(234,229,217,0.08)",
+          transformOrigin: "left",
+          scaleX: 0,
+        }}
+      />
+
+      {/* Section navigation — bottom */}
       <div
         ref={navRef}
         style={{
           position: "relative",
           zIndex: 2,
-          padding: "0 0 60px",
-          marginTop: "auto",
           opacity: 0,
+          paddingBottom: 0,
         }}
       >
-        {/* Divider */}
-        <div
-          style={{
-            height: 1,
-            backgroundColor: "rgba(234,229,217,0.07)",
-            margin: "0 48px 48px",
-          }}
-        />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 0,
-          }}
-        >
+        <div style={{ display: "flex" }}>
           {navItems.map((item, i) => (
             <button
               key={item.label}
               data-cursor="ENTER"
               onClick={() => navigate(item.href)}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
               style={{
-                background: "none",
+                flex: 1,
+                background: hovered === i ? "rgba(234,229,217,0.025)" : "transparent",
                 border: "none",
-                padding: "20px 60px",
-                borderLeft: i === 0 ? "1px solid rgba(234,229,217,0.08)" : "none",
-                borderRight: "1px solid rgba(234,229,217,0.08)",
+                borderLeft: i === 0 ? "none" : "1px solid rgba(234,229,217,0.07)",
+                borderRight: "none",
+                padding: "36px 40px",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                gap: 8,
-                transition: "background 0.4s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(234,229,217,0.02)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "none";
+                alignItems: "flex-start",
+                gap: 10,
+                transition: "background 0.45s ease",
+                textAlign: "left",
               }}
             >
+              <div style={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center" }}>
+                <span
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 8,
+                    letterSpacing: "0.22em",
+                    color: "rgba(234,229,217,0.2)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.num}
+                </span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  style={{
+                    transform: hovered === i ? "translate(2px, -2px)" : "translate(0,0)",
+                    transition: "transform 0.35s ease",
+                    opacity: hovered === i ? 0.6 : 0.2,
+                  }}
+                >
+                  <path d="M2 12L12 2M6 2H12V8" stroke="#EAE5D9" strokeWidth="1" />
+                </svg>
+              </div>
               <span
                 style={{
                   fontFamily: "Cormorant Garamond, serif",
-                  fontSize: 22,
+                  fontSize: "clamp(20px, 2.2vw, 30px)",
                   fontWeight: 400,
                   color: "#EAE5D9",
-                  letterSpacing: "0.06em",
+                  letterSpacing: "0.04em",
+                  lineHeight: 1,
                 }}
               >
                 {item.label}
@@ -266,8 +303,8 @@ export default function Landing() {
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: 9,
-                  letterSpacing: "0.2em",
-                  color: "rgba(234,229,217,0.3)",
+                  letterSpacing: "0.18em",
+                  color: "rgba(234,229,217,0.28)",
                   textTransform: "uppercase",
                 }}
               >
