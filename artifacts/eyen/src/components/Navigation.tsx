@@ -81,16 +81,16 @@ export default function Navigation() {
             padding: 0,
             display: "flex",
             alignItems: "center",
-            gap: 12,
+            gap: 10,
           }}
         >
-          <EyeLogo size={18} color="#EAE5D9" opacity={0.9} />
+          <EyeLogo size={16} color="#EAE5D9" opacity={0.85} />
           <span
             style={{
               fontFamily: "Cormorant Garamond, Georgia, serif",
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: 400,
-              letterSpacing: "0.18em",
+              letterSpacing: "0.22em",
               color: "#EAE5D9",
               lineHeight: 1,
             }}
