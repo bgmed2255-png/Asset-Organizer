@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "KIzrx9HPSoGcbaiq_0QcN"
+uri = "file://artifacts/eyen/public/images/hero-crowd.png"
+type = "image"
+title = "suited man crowd top down cinematic"
