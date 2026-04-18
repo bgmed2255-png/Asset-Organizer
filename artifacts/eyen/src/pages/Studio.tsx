@@ -142,13 +142,13 @@ export default function Studio() {
               <div style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.18em", color: "rgba(234,229,217,0.2)", marginBottom: 20 }}>
                 {String(i + 1).padStart(2, "0")}
               </div>
-              <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, fontWeight: 400, color: "#EAE5D9", marginBottom: 6 }}>
+              <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(18px, 1.8vw, 24px)", fontWeight: 400, color: "#EAE5D9", marginBottom: 6, lineHeight: 1.2 }}>
                 {member.name}
               </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.15em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 24 }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.24em", color: "rgba(234,229,217,0.35)", textTransform: "uppercase", marginBottom: 24 }}>
                 {member.role}
               </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.15em", color: "rgba(234,229,217,0.18)", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.24em", color: "rgba(234,229,217,0.18)", textTransform: "uppercase" }}>
                 Since {member.since}
               </p>
             </div>
@@ -209,7 +209,7 @@ export default function Studio() {
               }}
             >
               <div style={{ width: 32, height: 1, backgroundColor: "rgba(234,229,217,0.15)", marginBottom: 36 }} />
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, lineHeight: 1.92, color: "rgba(234,229,217,0.6)", letterSpacing: "0.03em", maxWidth: 420 }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, lineHeight: 1.85, color: "rgba(234,229,217,0.6)", letterSpacing: "0.025em", maxWidth: 420 }}>
                 {item.body}
               </p>
               <div style={{ marginTop: 56, width: "100%", aspectRatio: "16/9", position: "relative", overflow: "hidden", background: "#0a0a0a" }}>

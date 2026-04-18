@@ -49,7 +49,7 @@ export default function Contact() {
               <a
                 href="mailto:hello@eyen.studio"
                 data-cursor="WRITE"
-                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, color: "#EAE5D9", textDecoration: "none", borderBottom: "1px solid rgba(234,229,217,0.2)", paddingBottom: 4, transition: "border-color 0.3s ease" }}
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(17px, 1.8vw, 24px)", color: "#EAE5D9", textDecoration: "none", borderBottom: "1px solid rgba(234,229,217,0.2)", paddingBottom: 4, transition: "border-color 0.3s ease" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(234,229,217,0.6)")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(234,229,217,0.2)")}
               >
@@ -64,7 +64,7 @@ export default function Contact() {
               <a
                 href="mailto:press@eyen.studio"
                 data-cursor="WRITE"
-                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, color: "#EAE5D9", textDecoration: "none", borderBottom: "1px solid rgba(234,229,217,0.2)", paddingBottom: 4, transition: "border-color 0.3s ease" }}
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(17px, 1.8vw, 24px)", color: "#EAE5D9", textDecoration: "none", borderBottom: "1px solid rgba(234,229,217,0.2)", paddingBottom: 4, transition: "border-color 0.3s ease" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(234,229,217,0.6)")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(234,229,217,0.2)")}
               >
@@ -91,10 +91,10 @@ export default function Contact() {
               { city: "Dubai", address: "DIFC, The Gate Building" },
             ].map((office) => (
               <div key={office.city} className="contact-reveal" style={{ marginBottom: 40, paddingBottom: 40, borderBottom: "1px solid rgba(234,229,217,0.07)" }}>
-                <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 20, color: "#EAE5D9", marginBottom: 8 }}>
+                <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(16px, 1.5vw, 22px)", color: "#EAE5D9", marginBottom: 8, lineHeight: 1.2 }}>
                   {office.city}
                 </p>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "rgba(234,229,217,0.35)", letterSpacing: "0.04em", lineHeight: 1.6 }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "rgba(234,229,217,0.35)", letterSpacing: "0.03em", lineHeight: 1.75 }}>
                   {office.address}
                 </p>
               </div>
@@ -126,8 +126,8 @@ export default function Contact() {
 
       {/* Footer */}
       <div style={{ padding: "24px 48px", borderTop: "1px solid rgba(234,229,217,0.07)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 18, color: "rgba(234,229,217,0.2)", letterSpacing: "0.15em" }}>EYEN</p>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: 9, letterSpacing: "0.12em", color: "rgba(234,229,217,0.15)", textTransform: "uppercase" }}>
+        <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(14px, 1.2vw, 18px)", color: "rgba(234,229,217,0.2)", letterSpacing: "0.2em" }}>EYEN</p>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.2em", color: "rgba(234,229,217,0.15)", textTransform: "uppercase" }}>
           © 2023–2026 EYEN Studio
         </p>
       </div>

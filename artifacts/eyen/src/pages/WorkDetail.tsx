@@ -121,7 +121,7 @@ export default function WorkDetail() {
               Services
             </p>
             {project.services.map((s) => (
-              <div key={s} className="detail-reveal" style={{ padding: "14px 0", borderTop: "1px solid rgba(234,229,217,0.07)", fontFamily: "Inter, sans-serif", fontSize: 11, letterSpacing: "0.08em", color: "rgba(234,229,217,0.55)" }}>
+              <div key={s} className="detail-reveal" style={{ padding: "14px 0", borderTop: "1px solid rgba(234,229,217,0.07)", fontFamily: "Inter, sans-serif", fontSize: 12, letterSpacing: "0.04em", color: "rgba(234,229,217,0.55)", lineHeight: 1.5 }}>
                 {s}
               </div>
             ))}

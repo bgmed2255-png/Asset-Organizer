@@ -236,12 +236,12 @@ export default function Landing() {
 
         {/* Corner metadata */}
         <div style={{ position: "absolute", top: 88, right: 28, zIndex: 2, textAlign: "right" }}>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.3em", color: "rgba(234,229,217,0.25)", textTransform: "uppercase", lineHeight: 2 }}>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.24em", color: "rgba(234,229,217,0.25)", textTransform: "uppercase", lineHeight: 2 }}>
             Branding Agency<br />Est. 2023
           </p>
         </div>
-        <div style={{ position: "absolute", bottom: 72, left: 28, zIndex: 2 }}>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.28em", color: "rgba(234,229,217,0.2)", textTransform: "uppercase" }}>
+        <div style={{ position: "absolute", bottom: 96, left: 28, zIndex: 2 }}>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.24em", color: "rgba(234,229,217,0.2)", textTransform: "uppercase" }}>
             London · New York · Dubai
           </p>
         </div>
@@ -280,7 +280,7 @@ export default function Landing() {
           <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.3em", color: "rgba(234,229,217,0.2)", textTransform: "uppercase", marginBottom: 40 }}>
             Our philosophy
           </p>
-          <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(36px, 6.5vw, 96px)", fontWeight: 400, lineHeight: 1.12, color: BEIGE, display: "flex", flexWrap: "wrap", gap: "0 0.32em" }}>
+          <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(36px, 6.5vw, 96px)", fontWeight: 400, lineHeight: 1.12, color: BEIGE, display: "flex", flexWrap: "wrap", gap: "0.15em 0.3em" }}>
             {["We", "don't", "build", "brands.", "We", "engineer", "belief."].map((w, i) => (
               <span key={i} className="pin-word" style={{ display: "inline-block", opacity: 0.08, willChange: "opacity" }}>{w}</span>
             ))}
@@ -305,7 +305,7 @@ export default function Landing() {
         </div>
 
         {/* Right: text */}
-        <div ref={philoTextRef} style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "100px clamp(32px, 5vw, 90px) 100px 60px" }}>
+        <div ref={philoTextRef} style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "100px clamp(40px, 5vw, 90px) 100px clamp(40px, 5vw, 72px)" }}>
           <div className="text-line" style={{ overflow: "hidden", marginBottom: 24 }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: 8, letterSpacing: "0.3em", color: "rgba(234,229,217,0.22)", textTransform: "uppercase" }}>
               The solitary figure
@@ -404,7 +404,7 @@ export default function Landing() {
           </button>
         </div>
 
-        <div ref={worksRef} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 2 }}>
+        <div ref={worksRef} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(24px, 3vw, 48px)" }}>
           {projects.slice(0, 3).map((project, i) => (
             <div key={project.slug} className="work-card" style={{ opacity: 0 }}>
               <button onClick={() => navigate(`/works/${project.slug}`)}
